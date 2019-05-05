@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Ads.Api.Data;
 using Ads.Api.Interfaces;
@@ -28,9 +29,7 @@ namespace Ads.Api.Tests
         {
             // arrange
             var campaignService = GetInMemoryCampaignService();
-
-            // act
-            var campaign = await campaignService.Add(new Campaign
+            var campaign = new Campaign
             {
                 Name = "Campaign1",
                 Threshold = 10,
@@ -38,12 +37,76 @@ namespace Ads.Api.Tests
                 EndDate = DateTime.Today.AddDays(1),
                 Description = "Desc",
                 Location = new Point(100, 100, 200)
-            });
+            };
+
+            // act
+            await campaignService.Add(campaign);
 
             // assert
             var addedCampaign = campaignService.Get(campaign.Id);
             Assert.NotNull(campaign);
             Assert.NotNull(addedCampaign);
+        }
+
+        [Fact]
+        public async Task ShouldGetAllCampaigns()
+        {
+            // arrange
+            var campaignService = GetInMemoryCampaignService();
+            
+            // act
+            var campaign = new Campaign
+            {
+                Name = "Campaign1",
+                Threshold = 10,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Today.AddDays(1),
+                Description = "Desc",
+                Location = new Point(100, 100, 200)
+            };
+            await campaignService.Add(campaign);
+            
+            var allCampaings = await campaignService.All();
+
+            // assert
+            Assert.NotNull(allCampaings);
+            Assert.Single(allCampaings);
+            Assert.True(allCampaings.First().Equals(campaign));
+        }
+
+        [Fact]
+        public async Task ShouldDeleteCampaign()
+        {
+            // arrange
+            var campaignService = GetInMemoryCampaignService();
+            
+            // act
+            var campaign = new Campaign
+            {
+                Name = "Campaign1",
+                Threshold = 10,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Today.AddDays(1),
+                Description = "Desc",
+                Location = new Point(100, 100, 200)
+            };
+            await campaignService.Add(campaign);
+            await campaignService.Delete(campaign.Id);
+            
+            var allCampaings = await campaignService.All();
+            
+            // assert
+            Assert.Empty(allCampaings);
+        }
+        
+        [Fact]
+        public async Task ShouldThrowCampaignNotFoundException()
+        {
+            // arrange
+            var campaignService = GetInMemoryCampaignService();
+            
+            // act & assert
+            await Assert.ThrowsAsync<Exception>(async () => await campaignService.Delete("WRONG_ID"));
         }
     }
 }

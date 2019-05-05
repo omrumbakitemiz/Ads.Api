@@ -6,8 +6,8 @@ namespace Ads.Api.Interfaces
 {
     public interface ICampaignService
     {
-        Task<Campaign> Add(Campaign campaign);
-        
+        Task Add(Campaign campaign);
+
         Task<Campaign> Get(string id);
 
         Task<List<Campaign>> All();

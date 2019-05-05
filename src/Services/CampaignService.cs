@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ads.Api.Data;
 using Ads.Api.Interfaces;
 using Ads.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -26,24 +28,30 @@ namespace Ads.Api.Services
             _context = context;
         }
 
-        public Task<Campaign> Add(Campaign campaign)
-        {
-            throw new NotImplementedException();
+        public async Task Add(Campaign campaign)
+        { 
+            await _context.Campaigns.AddAsync(campaign);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<Campaign> Get(string id)
+        public async Task<Campaign> Get(string id)
         {
-            throw new NotImplementedException();
+            return await _context.Campaigns.FindAsync(id);
         }
 
-        public Task<List<Campaign>> All()
+        public async Task<List<Campaign>> All()
         {
-            throw new NotImplementedException();
+            return await _context.Campaigns.ToListAsync();
         }
 
-        public Task Delete(string id)
+        public async Task Delete(string id)
         {
-            throw new NotImplementedException();
+            var campaign = await _context.Campaigns.FindAsync(id);
+
+            if (campaign == null) throw new Exception("Campaign Not Found");
+            
+            _context.Campaigns.Remove(campaign);
+            await _context.SaveChangesAsync();
         }
     }
 }
