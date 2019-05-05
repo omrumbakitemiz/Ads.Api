@@ -1,9 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.352
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads.Api", "Ads.Api.csproj", "{9163ED3B-6FAD-4246-9629-8A348364359C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads.Api", "src\Ads.Api.csproj", "{7092A5BF-953C-4B4C-B405-AD77379AB91B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads.Api.Tests", "test\Ads.Api.Tests\Ads.Api.Tests.csproj", "{1DE859C6-CC6A-4515-BED8-8D2F407FB854}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9163ED3B-6FAD-4246-9629-8A348364359C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9163ED3B-6FAD-4246-9629-8A348364359C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9163ED3B-6FAD-4246-9629-8A348364359C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9163ED3B-6FAD-4246-9629-8A348364359C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B5446845-E1B9-4537-B0FF-17E18B7F0C5B}
+		{7092A5BF-953C-4B4C-B405-AD77379AB91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7092A5BF-953C-4B4C-B405-AD77379AB91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7092A5BF-953C-4B4C-B405-AD77379AB91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7092A5BF-953C-4B4C-B405-AD77379AB91B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE859C6-CC6A-4515-BED8-8D2F407FB854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE859C6-CC6A-4515-BED8-8D2F407FB854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE859C6-CC6A-4515-BED8-8D2F407FB854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE859C6-CC6A-4515-BED8-8D2F407FB854}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
