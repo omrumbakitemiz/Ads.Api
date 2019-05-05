@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Ads.Api.csproj" />
+  </ItemGroup>
+
 </Project>
