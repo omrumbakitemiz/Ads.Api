@@ -2,7 +2,7 @@
 
 namespace Ads.Api.Models
 {
-    public class SingInResource
+    public class SignInResource
     {
         public string Token { get; set; }
 

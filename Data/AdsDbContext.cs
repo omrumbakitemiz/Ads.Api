@@ -1,9 +1,10 @@
 ﻿using Ads.Api.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ads.Api.Data
 {
-    public class AdsDbContext : DbContext
+    public class AdsDbContext : IdentityDbContext<User>
     {
         public AdsDbContext(DbContextOptions<AdsDbContext> dbContextOptions) : base(dbContextOptions)
         {
@@ -16,7 +17,8 @@ namespace Ads.Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserCampaign>().HasKey(userCampaign => new { userCampaign.UserId, userCampaign.CampaignId });
+            modelBuilder.Entity<UserCampaign>()
+                .HasKey(userCampaign => new {userCampaign.UserId, userCampaign.CampaignId});
         }
     }
 }
