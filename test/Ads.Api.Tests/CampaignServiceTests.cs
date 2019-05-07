@@ -6,6 +6,8 @@ using Ads.Api.Interfaces;
 using Ads.Api.Models;
 using Ads.Api.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Moq;
 using NetTopologySuite.Geometries;
 using Xunit;
 
@@ -13,7 +15,14 @@ namespace Ads.Api.Tests
 {
     public class UserServiceTest
     {
-        private static ICampaignService GetInMemoryCampaignService()
+        private readonly Mock<ILogger<CampaignService>> _mockILogger;
+
+        public UserServiceTest()
+        {
+            _mockILogger = new Mock<ILogger<CampaignService>>();
+        }
+
+        private ICampaignService GetInMemoryCampaignService()
         {
             var builder = new DbContextOptionsBuilder<AdsDbContext>();
             var options = builder.UseInMemoryDatabase(new Guid().ToString()).Options;
@@ -21,7 +30,7 @@ namespace Ads.Api.Tests
             AdsDbContext clubSystemDbContext = new AdsDbContext(options);
             clubSystemDbContext.Database.EnsureDeleted();
             clubSystemDbContext.Database.EnsureCreated();
-            return new CampaignService(clubSystemDbContext);
+            return new CampaignService(clubSystemDbContext, _mockILogger.Object);
         }
 
         [Fact]
@@ -107,6 +116,40 @@ namespace Ads.Api.Tests
             
             // act & assert
             await Assert.ThrowsAsync<Exception>(async () => await campaignService.Delete("WRONG_ID"));
+        }
+
+        [Fact]
+        public async Task ShouldEditCampaign()
+        {
+            // arrange
+            var campaignService = GetInMemoryCampaignService();
+
+            // act
+            var campaign = new Campaign
+            {
+                Name = "Campaign1",
+                Threshold = 10,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Today.AddDays(1),
+                Description = "Desc",
+                Location = new Point(100, 100, 200)
+            };
+
+            await campaignService.Add(campaign);
+
+            var _campaign = campaign;
+            _campaign.Description = "Updated desc";
+            _campaign.EndDate = DateTime.Today.AddDays(7);
+            _campaign.Threshold = 20;
+
+            await campaignService.Edit(_campaign);
+
+            var editedCampaign = await campaignService.Get(_campaign.Id);
+
+            // assert
+            Assert.Equal(_campaign.Description, editedCampaign.Description);
+            Assert.Equal(_campaign.EndDate, editedCampaign.EndDate);
+            Assert.Equal(_campaign.Threshold, editedCampaign.Threshold);
         }
     }
 }

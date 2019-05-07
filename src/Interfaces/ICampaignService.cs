@@ -13,5 +13,7 @@ namespace Ads.Api.Interfaces
         Task<List<Campaign>> All();
         
         Task Delete(string id);
+
+        Task Edit(Campaign campaign);
     }
 }

@@ -15,6 +15,7 @@ namespace Ads.Api.Controllers
         {
             _userService = userService;
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] User user)
         {
