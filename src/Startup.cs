@@ -16,6 +16,8 @@ using Ads.Api.Interfaces;
 using Ads.Api.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace Ads.Api
 {
@@ -86,10 +88,8 @@ namespace Ads.Api
                     };
                 });
 
-//            services
-//                .AddDefaultIdentity<User>()
-//                .AddEntityFrameworkStores<AdsDbContext>();
-            services.AddDefaultIdentity<User>()
+            services
+                .AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<AdsDbContext>();
 
             services.AddMvc()
@@ -105,13 +105,14 @@ namespace Ads.Api
             services.AddHealthChecks();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddFile("Logs/ads.api-{Date}.txt");
 
-            if (env.EnvironmentName == EnvironmentName.Development)
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
