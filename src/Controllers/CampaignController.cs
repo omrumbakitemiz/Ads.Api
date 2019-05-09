@@ -1,33 +1,49 @@
-﻿using Ads.Api.Models;
+﻿using System.Threading.Tasks;
+using Ads.Api.Interfaces;
+using Ads.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Api.Controllers
 {
     public class CampaignController : ControllerBase
     {
-        public IActionResult Get([FromBody] string id)
+        private readonly ICampaignService _campaignService;
+
+        public CampaignController(ICampaignService campaignService)
         {
+            _campaignService = campaignService;
+        }
+        public async Task<IActionResult> Get([FromBody] string id)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            return Ok(await _campaignService.Get(id));
+        }
+
+        public async Task<IActionResult> Post([FromBody] Campaign campaign)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            await _campaignService.Add(campaign);
             return Ok();
         }
 
-        public IActionResult Post([FromBody] Campaign campaign)
+        public async Task<IActionResult> Edit([FromBody] Campaign campaign)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            await _campaignService.Edit(campaign);
             return Ok();
         }
 
-        public IActionResult Edit([FromBody] Campaign campaign)
+        public async Task<IActionResult> Delete([FromBody]string id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            await _campaignService.Delete(id);
             return Ok();
         }
 
-        public IActionResult Delete([FromBody]string id)
+        public async Task<IActionResult> All()
         {
-            return Ok();
-        }
-
-        public IActionResult All()
-        {
-            return Ok();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            return Ok(await _campaignService.All());
         }
     }
 }

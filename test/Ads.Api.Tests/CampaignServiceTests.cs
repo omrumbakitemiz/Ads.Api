@@ -22,17 +22,6 @@ namespace Ads.Api.Tests
             _mockILogger = new Mock<ILogger<CampaignService>>();
         }
 
-        private ICampaignService GetInMemoryCampaignService()
-        {
-            var builder = new DbContextOptionsBuilder<AdsDbContext>();
-            var options = builder.UseInMemoryDatabase(new Guid().ToString()).Options;
-
-            AdsDbContext clubSystemDbContext = new AdsDbContext(options);
-            clubSystemDbContext.Database.EnsureDeleted();
-            clubSystemDbContext.Database.EnsureCreated();
-            return new CampaignService(clubSystemDbContext, _mockILogger.Object);
-        }
-
         [Fact]
         public async Task ShouldAddCampaign()
         {
@@ -137,19 +126,31 @@ namespace Ads.Api.Tests
 
             await campaignService.Add(campaign);
 
-            var _campaign = campaign;
-            _campaign.Description = "Updated desc";
-            _campaign.EndDate = DateTime.Today.AddDays(7);
-            _campaign.Threshold = 20;
+            var updatedCampaign = campaign;
+            updatedCampaign.Description = "Updated desc";
+            updatedCampaign.EndDate = DateTime.Today.AddDays(7);
+            updatedCampaign.Threshold = 20;
 
-            await campaignService.Edit(_campaign);
+            await campaignService.Edit(updatedCampaign);
 
-            var editedCampaign = await campaignService.Get(_campaign.Id);
+            var editedCampaign = await campaignService.Get(updatedCampaign.Id);
 
             // assert
-            Assert.Equal(_campaign.Description, editedCampaign.Description);
-            Assert.Equal(_campaign.EndDate, editedCampaign.EndDate);
-            Assert.Equal(_campaign.Threshold, editedCampaign.Threshold);
+            Assert.Equal(updatedCampaign.Description, editedCampaign.Description);
+            Assert.Equal(updatedCampaign.EndDate, editedCampaign.EndDate);
+            Assert.Equal(updatedCampaign.Threshold, editedCampaign.Threshold);
+        }
+        
+        
+        private ICampaignService GetInMemoryCampaignService()
+        {
+            var builder = new DbContextOptionsBuilder<AdsDbContext>();
+            var options = builder.UseInMemoryDatabase(new Guid().ToString()).Options;
+
+            AdsDbContext clubSystemDbContext = new AdsDbContext(options);
+            clubSystemDbContext.Database.EnsureDeleted();
+            clubSystemDbContext.Database.EnsureCreated();
+            return new CampaignService(clubSystemDbContext, _mockILogger.Object);
         }
     }
 }
