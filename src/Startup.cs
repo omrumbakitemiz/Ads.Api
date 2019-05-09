@@ -86,20 +86,21 @@ namespace Ads.Api
                     };
                 });
 
-            services
-                .AddDefaultIdentity<User>()
+//            services
+//                .AddDefaultIdentity<User>()
+//                .AddEntityFrameworkStores<AdsDbContext>();
+            services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<AdsDbContext>();
-            
+
             services.AddMvc()
-                .AddJsonOptions(options =>
+                .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                     options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
             services.AddScoped<IUserService, UserService>();
             services.AddHealthChecks();
         }
@@ -107,7 +108,7 @@ namespace Ads.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddFile("Logs/ads.api-{Date}.txt");
-            
+
             if (env.EnvironmentName == EnvironmentName.Development)
             {
                 app.UseDeveloperExceptionPage();
