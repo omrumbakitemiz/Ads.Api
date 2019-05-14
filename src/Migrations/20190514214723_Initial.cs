@@ -2,10 +2,11 @@
 using GeoAPI.Geometries;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using NetTopologySuite.Geometries;
 
 namespace Ads.Api.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +56,7 @@ namespace Ads.Api.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    Location = table.Column<IPoint>(nullable: true),
+                    Location = table.Column<Point>(nullable: true),
                     DefaultThreshold = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
@@ -178,7 +179,7 @@ namespace Ads.Api.Migrations
                     Description = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    CompanyId = table.Column<string>(nullable: false),
+                    CompanyId = table.Column<string>(nullable: true),
                     Location = table.Column<IPoint>(nullable: true),
                     Threshold = table.Column<long>(nullable: false)
                 },
@@ -190,7 +191,7 @@ namespace Ads.Api.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Compaines",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

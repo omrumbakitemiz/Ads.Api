@@ -17,7 +17,6 @@ using Ads.Api.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 
 namespace Ads.Api
 {
@@ -46,27 +45,27 @@ namespace Ads.Api
                 )
             );
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info
-                {
-                    Version = "v1",
-                    Title = "Ads Api",
-                    Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = "None",
-                    Contact = new Contact
-                    {
-                        Name = "Ömrüm Baki Temiz",
-                        Email = "omrumbakitemiz@icloud.com",
-                        Url = "https://github.com/omrumbakitemiz"
-                    },
-                    License = new License
-                    {
-                        Name = "MIT",
-                        Url = "https://github.com/omrumbakitemiz/Ads.Api"
-                    }
-                });
-            });
+//            services.AddSwaggerGen(c =>
+//            {
+//                c.SwaggerDoc("v1", new Info
+//                {
+//                    Version = "v1",
+//                    Title = "Ads Api",
+//                    Description = "A simple example ASP.NET Core Web API",
+//                    TermsOfService = "None",
+//                    Contact = new Contact
+//                    {
+//                        Name = "Ömrüm Baki Temiz",
+//                        Email = "omrumbakitemiz@icloud.com",
+//                        Url = "https://github.com/omrumbakitemiz"
+//                    },
+//                    License = new License
+//                    {
+//                        Name = "MIT",
+//                        Url = "https://github.com/omrumbakitemiz/Ads.Api"
+//                    }
+//                });
+//            });
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(options =>
@@ -102,6 +101,9 @@ namespace Ads.Api
                 }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICampaignService, CampaignService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            
             services.AddHealthChecks();
         }
 
@@ -119,14 +121,14 @@ namespace Ads.Api
                 app.UseHsts();
             }
 
-            app.UseCors("default");
+            app.UseRouting();
             app.UseAuthentication();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "News API V1"); });
+            app.UseCors("default");
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "News API V1"); });
             app.UseHealthChecks("/health");
-
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseEndpoints(builder => builder.MapDefaultControllerRoute());
         }
     }
 }

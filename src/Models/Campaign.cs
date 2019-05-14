@@ -9,7 +9,6 @@ namespace Ads.Api.Models
 {
     public class Campaign
     {
-        [Key]
         public string Id { get; set; }
 
         [Required]
@@ -21,8 +20,7 @@ namespace Ads.Api.Models
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
-
-        [Required]
+        
         public Company Company { get; set; }
 
         public IPoint Location { get; set; }
