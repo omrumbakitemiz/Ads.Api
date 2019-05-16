@@ -1,0 +1,232 @@
+2019-05-16T12:00:51.2369893+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T12:00:51.2459970+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T12:00:51.2481777+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T12:00:51.2511269+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T12:00:51.2532392+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T12:04:59.0289542+03:00 0HLMPRM977GLU:00000001 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/campaign/all   (ca22a1cb)
+2019-05-16T12:04:59.1536753+03:00 0HLMPRM977GLU:00000001 [INF] Executing endpoint '"Ads.Api.Controllers.CampaignController.All (Ads.Api)"' (500cc934)
+2019-05-16T12:04:59.2294005+03:00 0HLMPRM977GLU:00000001 [INF] Route matched with "{action = \"All\", controller = \"Campaign\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] All()" on controller "Ads.Api.Controllers.CampaignController" ("Ads.Api"). (122b2fdf)
+2019-05-16T12:04:59.7740395+03:00 0HLMPRM977GLU:00000001 [INF] Executing action method "Ads.Api.Controllers.CampaignController.All (Ads.Api)" - Validation state: Valid (dad538d7)
+2019-05-16T12:27:16.1706400+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T12:27:16.1779527+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T12:27:16.1801709+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T12:27:16.1820474+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T12:27:16.1836171+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T12:29:14.4627135+03:00 0HLMPS3K7D1BP:00000001 [ERR] An error occurred using the connection to database '"AdsDb"' on server '"localhost"'. (5fc3407c)
+2019-05-16T12:29:14.6374122+03:00 0HLMPS3K7D1BP:00000001 [ERR] An exception occurred while iterating over the results of a query for context type '"Ads.Api.Data.AdsDbContext"'."
+""System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (2): Sistem belirtilen dosyayı bulamıyor.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.BufferlessMoveNext(DbContext _, Boolean buffer, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.SelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Select.cs:line 106
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\AsyncIterator.cs:line 98
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20" (f5c7ac34)
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (2): Sistem belirtilen dosyayı bulamıyor.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.BufferlessMoveNext(DbContext _, Boolean buffer, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.SelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Select.cs:line 106
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\AsyncIterator.cs:line 98
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2019-05-16T12:29:14.8989373+03:00 0HLMPS3K7D1BP:00000001 [ERR] Connection id ""0HLMPS3K7D1BP"", Request id ""0HLMPS3K7D1BP:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (2): Sistem belirtilen dosyayı bulamıyor.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.BufferlessMoveNext(DbContext _, Boolean buffer, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.SelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Select.cs:line 106
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\AsyncIterator.cs:line 98
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Aggregate.cs:line 120
+   at Ads.Api.Services.CampaignService.All() in C:\Users\immino\source\repos\Ads.Api\src\Services\CampaignService.cs:line 40
+   at Ads.Api.Controllers.CampaignController.All() in C:\Users\immino\source\repos\Ads.Api\src\Controllers\CampaignController.cs:line 53
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Builder.Extensions.MapWhenMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2019-05-16T12:37:36.0974892+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T12:37:36.1042199+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T12:37:36.1064373+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T12:37:36.1084635+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T12:37:36.1106139+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T12:52:50.8069765+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T12:52:50.8139811+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T12:52:50.8161852+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T12:52:50.8180216+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T12:52:50.8207054+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T12:53:10.0133723+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T12:53:10.0200398+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T12:53:10.0221920+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T12:53:10.0238095+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T12:53:10.0253629+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T12:53:54.6337988+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T12:53:54.6406302+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T12:53:54.6429090+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T12:53:54.6446545+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T12:53:54.6462622+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T12:59:51.3352540+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T12:59:51.3420226+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T12:59:51.3442567+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T12:59:51.3458012+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T12:59:51.3475044+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T13:09:16.6174297+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2019-05-16T13:09:16.6271688+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2019-05-16T13:09:16.6303419+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2019-05-16T13:09:16.6325802+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2019-05-16T13:09:16.6347485+03:00  [INF] Content root path: "C:\Users\immino\source\repos\Ads.Api\src" (b5d60022)
+2019-05-16T13:09:33.1562954+03:00 0HLMPSQBPMKM7:00000001 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/campaign/all   (ca22a1cb)
+2019-05-16T13:09:33.2718518+03:00 0HLMPSQBPMKM7:00000001 [INF] Executing endpoint '"Ads.Api.Controllers.CampaignController.All (Ads.Api)"' (500cc934)
+2019-05-16T13:09:33.3521773+03:00 0HLMPSQBPMKM7:00000001 [INF] Route matched with "{action = \"All\", controller = \"Campaign\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] All()" on controller "Ads.Api.Controllers.CampaignController" ("Ads.Api"). (122b2fdf)
+2019-05-16T13:09:33.9073068+03:00 0HLMPSQBPMKM7:00000001 [INF] Executing action method "Ads.Api.Controllers.CampaignController.All (Ads.Api)" - Validation state: Valid (dad538d7)
+2019-05-16T13:09:34.8960530+03:00 0HLMPSQBPMKM7:00000001 [INF] Entity Framework Core "3.0.0-preview5.19227.1" initialized '"AdsDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using NetTopologySuite " (9958f5bb)
+2019-05-16T13:09:36.8566016+03:00 0HLMPSQBPMKM7:00000001 [INF] Campaign All:  (fa97ef57)
+2019-05-16T13:09:36.8723158+03:00 0HLMPSQBPMKM7:00000001 [INF] Executed action method "Ads.Api.Controllers.CampaignController.All (Ads.Api)", returned result "Microsoft.AspNetCore.Mvc.OkObjectResult" in 2952.0016ms. (50a9e262)
+2019-05-16T13:09:36.8876451+03:00 0HLMPSQBPMKM7:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Ads.Api.Models.Campaign, Ads.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2019-05-16T13:09:37.0533915+03:00 0HLMPSQBPMKM7:00000001 [INF] Executed action "Ads.Api.Controllers.CampaignController.All (Ads.Api)" in 3688.3015ms (afa2e885)
+2019-05-16T13:09:37.0573604+03:00 0HLMPSQBPMKM7:00000001 [INF] Executed endpoint '"Ads.Api.Controllers.CampaignController.All (Ads.Api)"' (99874f2b)
+2019-05-16T13:09:37.0753862+03:00 0HLMPSQBPMKM7:00000001 [INF] Request finished in 3928.7752ms 200 application/json; charset=utf-8 (791a596a)
+2019-05-16T13:12:24.1492533+03:00 0HLMPSQBPMKM7:00000002 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/company application/json 108 (ca22a1cb)
+2019-05-16T13:12:24.1687575+03:00 0HLMPSQBPMKM7:00000002 [INF] Executing endpoint '"Ads.Api.Controllers.CompanyController.Post (Ads.Api)"' (500cc934)
+2019-05-16T13:12:24.2045634+03:00 0HLMPSQBPMKM7:00000002 [INF] Route matched with "{action = \"Post\", controller = \"Company\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Ads.Api.Models.Company)" on controller "Ads.Api.Controllers.CompanyController" ("Ads.Api"). (122b2fdf)
+2019-05-16T13:12:24.3749690+03:00 0HLMPSQBPMKM7:00000002 [INF] Executing action method "Ads.Api.Controllers.CompanyController.Post (Ads.Api)" - Validation state: Valid (dad538d7)
+2019-05-16T13:12:24.4456703+03:00 0HLMPSQBPMKM7:00000002 [INF] Entity Framework Core "3.0.0-preview5.19227.1" initialized '"AdsDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using NetTopologySuite " (9958f5bb)
+2019-05-16T13:12:24.9675824+03:00 0HLMPSQBPMKM7:00000002 [ERR] Failed executing DbCommand ("156"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Int64), @p3='?' (Size = 22) (DbType = Binary), @p4='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Compaines] ([Id], [Address], [DefaultThreshold], [Location], [Name])
+VALUES (@p0, @p1, @p2, @p3, @p4);" (627a98df)
+2019-05-16T13:12:25.0540614+03:00 0HLMPSQBPMKM7:00000002 [ERR] An exception occurred in the database while saving changes for context type '"Ads.Api.Data.AdsDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: A .NET Framework error occurred during execution of user-defined routine or aggregate \"geography\": 
+System.ArgumentException: 24204: The spatial reference identifier (SRID) is not valid. The specified SRID must match one of the supported SRIDs displayed in the sys.spatial_reference_systems catalog view.
+System.ArgumentException: 
+.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__126_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, IDiagnosticsLogger`1 logger, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: A .NET Framework error occurred during execution of user-defined routine or aggregate "geography": 
+System.ArgumentException: 24204: The spatial reference identifier (SRID) is not valid. The specified SRID must match one of the supported SRIDs displayed in the sys.spatial_reference_systems catalog view.
+System.ArgumentException: 
+.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__126_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, IDiagnosticsLogger`1 logger, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2019-05-16T13:12:25.3075873+03:00 0HLMPSQBPMKM7:00000002 [INF] Executed action "Ads.Api.Controllers.CompanyController.Post (Ads.Api)" in 1099.9309ms (afa2e885)
+2019-05-16T13:12:25.3210401+03:00 0HLMPSQBPMKM7:00000002 [INF] Executed endpoint '"Ads.Api.Controllers.CompanyController.Post (Ads.Api)"' (99874f2b)
+2019-05-16T13:12:25.7419572+03:00 0HLMPSQBPMKM7:00000002 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: A .NET Framework error occurred during execution of user-defined routine or aggregate "geography": 
+System.ArgumentException: 24204: The spatial reference identifier (SRID) is not valid. The specified SRID must match one of the supported SRIDs displayed in the sys.spatial_reference_systems catalog view.
+System.ArgumentException: 
+.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__126_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, IDiagnosticsLogger`1 logger, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Ads.Api.Services.CompanyService.Add(Company company) in C:\Users\immino\source\repos\Ads.Api\src\Services\CompanyService.cs:line 28
+   at Ads.Api.Controllers.CompanyController.Post(Company company) in C:\Users\immino\source\repos\Ads.Api\src\Controllers\CompanyController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Builder.Extensions.MapWhenMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-05-16T13:12:25.7938104+03:00 0HLMPSQBPMKM7:00000002 [INF] Request finished in 1634.7437ms 500 text/plain (791a596a)

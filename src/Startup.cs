@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -17,24 +16,36 @@ using Ads.Api.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
+using System.Runtime.InteropServices;
 
 namespace Ads.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        private IWebHostEnvironment Environment { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionStringAzureDb = Configuration.GetConnectionString("LocalDockerDatabase");
+            var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            var isMacOS = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+
+            Console.WriteLine(RuntimeInformation.OSDescription);
+
+            string connectionString = Configuration.GetConnectionString("LocalDockerDatabase");
+            if (isWindows)
+            {
+                connectionString = Configuration.GetConnectionString("LocalDb");
+            }
 
             services.AddDbContext<AdsDbContext>(options =>
-                options.UseSqlServer(connectionStringAzureDb, x => x.UseNetTopologySuite()));
+                options.UseSqlServer(connectionString, x => x.UseNetTopologySuite()));
 
             services.AddCors(options =>
                 options.AddPolicy("default", policy =>
@@ -44,28 +55,6 @@ namespace Ads.Api
                         .SetIsOriginAllowed(host => true)
                 )
             );
-
-//            services.AddSwaggerGen(c =>
-//            {
-//                c.SwaggerDoc("v1", new Info
-//                {
-//                    Version = "v1",
-//                    Title = "Ads Api",
-//                    Description = "A simple example ASP.NET Core Web API",
-//                    TermsOfService = "None",
-//                    Contact = new Contact
-//                    {
-//                        Name = "Ömrüm Baki Temiz",
-//                        Email = "omrumbakitemiz@icloud.com",
-//                        Url = "https://github.com/omrumbakitemiz"
-//                    },
-//                    License = new License
-//                    {
-//                        Name = "MIT",
-//                        Url = "https://github.com/omrumbakitemiz/Ads.Api"
-//                    }
-//                });
-//            });
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(options =>
@@ -124,8 +113,6 @@ namespace Ads.Api
             app.UseRouting();
             app.UseAuthentication();
             app.UseCors("default");
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "News API V1"); });
             app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
             app.UseEndpoints(builder => builder.MapDefaultControllerRoute());
