@@ -14,7 +14,7 @@ namespace Ads.Api.Services
     {
         private readonly AdsDbContext _context;
         private readonly ILogger<CampaignService> _logger;
-        
+
         public CompanyService(AdsDbContext context, ILogger<CampaignService> logger)
         {
             _context = context;
@@ -23,7 +23,10 @@ namespace Ads.Api.Services
 
         public async Task Add(Company company)
         {
-            company.Location = new Point(company.X, company.Y); 
+            company.Location = new Point(company.X, company.Y)
+            {
+                SRID = 4326
+            };
             _context.Companies.Add(company);
             await _context.SaveChangesAsync();
             _logger.Log(LogLevel.Information, "Company Add: ", company);
@@ -54,7 +57,7 @@ namespace Ads.Api.Services
             var company = await _context.Companies.FindAsync(id);
 
             if (company == null) throw new Exception("Company Not Found");
-            
+
             _context.Companies.Remove(company);
             await _context.SaveChangesAsync();
             _logger.Log(LogLevel.Information, "Company Delete: ", company);

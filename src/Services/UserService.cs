@@ -2,13 +2,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ads.Api.Data;
 using Ads.Api.Errors;
+using Ads.Api.Extensions;
 using Ads.Api.Interfaces;
 using Ads.Api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using News.Api.Extensions;
 
 namespace Ads.Api.Services
 {

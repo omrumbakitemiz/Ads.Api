@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace News.Api.Extensions
+namespace Ads.Api.Extensions
 {
     //
     // Summary:
