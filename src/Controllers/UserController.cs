@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Ads.Api.Data;
 using Ads.Api.Interfaces;
+using Ads.Api.Models;
 
 namespace Ads.Api.Controllers
 {
@@ -16,12 +17,25 @@ namespace Ads.Api.Controllers
             _userService = userService;
         }
 
-        [HttpPost("login")]
+        [HttpPost("signIn")]
         public async Task<IActionResult> Login([FromBody] User user)
         {
-            var loginResource = await _userService.SignIn(user);
+            var signInResource = await _userService.SignIn(user);
 
-            return Ok(loginResource);
+            return Ok(signInResource);
+        }
+
+        [HttpPost("signUp")]
+        public async Task<IActionResult> SignUp([FromBody] SignUpDto signUpDto)
+        {
+            var result = await _userService.SignUp(new User
+                {UserName = signUpDto.Username, PasswordHash = signUpDto.Password});
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
         }
     }
 }

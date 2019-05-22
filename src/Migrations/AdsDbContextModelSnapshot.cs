@@ -89,6 +89,9 @@ namespace Ads.Api.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Category")
+                        .IsRequired();
+
                     b.Property<string>("CompanyId");
 
                     b.Property<string>("Description");
@@ -101,8 +104,6 @@ namespace Ads.Api.Migrations
                         .IsRequired();
 
                     b.Property<DateTime>("StartDate");
-
-                    b.Property<long>("Threshold");
 
                     b.HasKey("Id");
 
@@ -117,8 +118,6 @@ namespace Ads.Api.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
-
-                    b.Property<long>("DefaultThreshold");
 
                     b.Property<Point>("Location");
 

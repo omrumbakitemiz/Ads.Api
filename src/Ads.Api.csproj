@@ -20,4 +20,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0-preview5-19227-01" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs" />
+  </ItemGroup>
+
 </Project>

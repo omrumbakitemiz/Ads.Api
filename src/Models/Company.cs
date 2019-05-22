@@ -22,9 +22,7 @@ namespace Ads.Api.Models
 
         [NotMapped]
         public double Y { get; set; }
-
-        public long DefaultThreshold { get; set; }
-
+        
         public Collection<Campaign> Campaigns { get; set; }
 
         public Company()

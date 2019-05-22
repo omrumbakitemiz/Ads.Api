@@ -56,8 +56,7 @@ namespace Ads.Api.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    Location = table.Column<Point>(nullable: true),
-                    DefaultThreshold = table.Column<long>(nullable: false)
+                    Location = table.Column<Point>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -181,7 +180,7 @@ namespace Ads.Api.Migrations
                     EndDate = table.Column<DateTime>(nullable: false),
                     CompanyId = table.Column<string>(nullable: true),
                     Location = table.Column<IPoint>(nullable: true),
-                    Threshold = table.Column<long>(nullable: false)
+                    Category = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Identity;
 
 namespace Ads.Api
 {
@@ -80,6 +81,15 @@ namespace Ads.Api
                 .AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<AdsDbContext>();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+            });
+
             services.AddMvc()
                 .AddNewtonsoftJson(options =>
                 {
@@ -112,9 +122,10 @@ namespace Ads.Api
 
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseCors("default");
             app.UseHealthChecks("/health");
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseEndpoints(builder => builder.MapDefaultControllerRoute());
         }
     }

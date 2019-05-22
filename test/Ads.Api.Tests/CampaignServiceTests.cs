@@ -30,7 +30,6 @@ namespace Ads.Api.Tests
             var campaign = new Campaign
             {
                 Name = "Campaign1",
-                Threshold = 10,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Today.AddDays(1),
                 Description = "Desc",
@@ -56,7 +55,6 @@ namespace Ads.Api.Tests
             var campaign = new Campaign
             {
                 Name = "Campaign1",
-                Threshold = 10,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Today.AddDays(1),
                 Description = "Desc",
@@ -82,7 +80,6 @@ namespace Ads.Api.Tests
             var campaign = new Campaign
             {
                 Name = "Campaign1",
-                Threshold = 10,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Today.AddDays(1),
                 Description = "Desc",
@@ -117,7 +114,6 @@ namespace Ads.Api.Tests
             var campaign = new Campaign
             {
                 Name = "Campaign1",
-                Threshold = 10,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Today.AddDays(1),
                 Description = "Desc",
@@ -129,7 +125,6 @@ namespace Ads.Api.Tests
             var updatedCampaign = campaign;
             updatedCampaign.Description = "Updated desc";
             updatedCampaign.EndDate = DateTime.Today.AddDays(7);
-            updatedCampaign.Threshold = 20;
 
             await campaignService.Edit(updatedCampaign);
 
@@ -138,7 +133,6 @@ namespace Ads.Api.Tests
             // assert
             Assert.Equal(updatedCampaign.Description, editedCampaign.Description);
             Assert.Equal(updatedCampaign.EndDate, editedCampaign.EndDate);
-            Assert.Equal(updatedCampaign.Threshold, editedCampaign.Threshold);
         }
         
         

@@ -24,9 +24,9 @@ namespace Ads.Api.Models
         public Company Company { get; set; }
 
         public IPoint Location { get; set; }
-
-        public long Threshold { get; set; }
-
+        
+        public Category Category { get; set; }
+        
         public ICollection<UserCampaign> UserCampaigns { get; set; }
 
         public Campaign()

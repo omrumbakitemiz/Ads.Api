@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Ads.Api.Data;
@@ -21,7 +22,8 @@ namespace Ads.Api.Services
         private readonly ILogger<UserService> _logger;
         private readonly JwtTokenGenerator _jwtTokenGenerator;
 
-        public UserService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration, ILogger<UserService> logger)
+        public UserService(UserManager<User> userManager, SignInManager<User> signInManager,
+            IConfiguration configuration, ILogger<UserService> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,20 +42,25 @@ namespace Ads.Api.Services
                 _logger.LogError("Login Failed");
                 throw new LoginException("Login Failed");
             }
-            
+
             var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == user.UserName);
+            var token = _jwtTokenGenerator.GenerateJwtToken(user.UserName, appUser);
             var signInResource = new SignInResource
             {
-                Token = _jwtTokenGenerator.GenerateJwtToken(user.UserName, appUser),
-                User = appUser
+                Token = token
             };
             return signInResource;
         }
 
         [AllowAnonymous]
-        public Task<SignUpResource> SignUp(User user)
+        public async Task<IdentityResult> SignUp(User user)
         {
-            throw new System.NotImplementedException();
+            if (user?.UserName == null || user.PasswordHash == null)
+            {
+                throw new Exception("User info is wrong!");
+            }
+
+            return await _userManager.CreateAsync(user, user.PasswordHash);
         }
     }
 }
