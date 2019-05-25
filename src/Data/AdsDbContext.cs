@@ -17,16 +17,16 @@ namespace Ads.Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Company>().Property(company => company.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Company>().Property(company => company.CompanyId).ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Campaign>().Property(campaign => campaign.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Campaign>().Property(campaign => campaign.CampaignId).ValueGeneratedOnAdd();
             
             modelBuilder.Entity<UserCampaign>()
                 .HasKey(userCampaign => new {userCampaign.UserId, userCampaign.CampaignId});
 
-            modelBuilder.Entity<Campaign>()
-                .HasOne(campaign => campaign.Company)
-                .WithMany(company => company.Campaigns);
+//            modelBuilder.Entity<Campaign>()
+//                .HasOne(campaign => campaign.Company)
+//                .WithMany(company => company.Campaigns);
 
             modelBuilder.Entity<Campaign>().Property(c => c.Category).HasConversion<string>();
         }

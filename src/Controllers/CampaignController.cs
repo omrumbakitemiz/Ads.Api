@@ -17,7 +17,7 @@ namespace Ads.Api.Controllers
             _campaignService = campaignService;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -32,7 +32,7 @@ namespace Ads.Api.Controllers
             return Ok(campaign);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Edit([FromBody] Campaign campaign)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -40,7 +40,7 @@ namespace Ads.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

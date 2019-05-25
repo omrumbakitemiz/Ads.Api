@@ -53,14 +53,14 @@ namespace Ads.Api.Migrations
                 name: "Compaines",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    CompanyId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: true),
                     Location = table.Column<Point>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Compaines", x => x.Id);
+                    table.PrimaryKey("PK_Compaines", x => x.CompanyId);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,23 +173,23 @@ namespace Ads.Api.Migrations
                 name: "Campaigns",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    CampaignId = table.Column<string>(nullable: false),
+                    CompanyId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    CompanyId = table.Column<string>(nullable: true),
                     Location = table.Column<IPoint>(nullable: true),
                     Category = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Campaigns", x => x.Id);
+                    table.PrimaryKey("PK_Campaigns", x => x.CampaignId);
                     table.ForeignKey(
                         name: "FK_Campaigns_Compaines_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Compaines",
-                        principalColumn: "Id",
+                        principalColumn: "CompanyId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -207,7 +207,7 @@ namespace Ads.Api.Migrations
                         name: "FK_UserCampaign_Campaigns_CampaignId",
                         column: x => x.CampaignId,
                         principalTable: "Campaigns",
-                        principalColumn: "Id",
+                        principalColumn: "CampaignId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserCampaign_AspNetUsers_UserId",

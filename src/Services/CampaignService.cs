@@ -21,7 +21,7 @@ namespace Ads.Api.Services
         }
 
         public async Task Add(Campaign campaign)
-        { 
+        {
             await _context.Campaigns.AddAsync(campaign);
             await _context.SaveChangesAsync();
             _logger.Log(LogLevel.Information, "Campaign Add: ", campaign);
@@ -29,7 +29,10 @@ namespace Ads.Api.Services
 
         public async Task<Campaign> Get(string id)
         {
-            var campaign = await _context.Campaigns.FindAsync(id);
+            var campaign = await _context.Campaigns
+                .Include(item => item.Company)
+                .SingleOrDefaultAsync(item => item.CampaignId == id);
+            
             _logger.Log(LogLevel.Information, "Campaign Get: ", campaign);
 
             return campaign;
@@ -37,7 +40,10 @@ namespace Ads.Api.Services
 
         public async Task<List<Campaign>> All()
         {
-            var campaigns = await _context.Campaigns.ToListAsync();
+            var campaigns = await _context.Campaigns
+                .Include(item => item.Company)
+                .ToListAsync();
+
             _logger.Log(LogLevel.Information, "Campaign All: ", campaigns);
 
             return campaigns;
@@ -48,7 +54,7 @@ namespace Ads.Api.Services
             var campaign = await _context.Campaigns.FindAsync(id);
 
             if (campaign == null) throw new Exception("Campaign Not Found");
-            
+
             _context.Campaigns.Remove(campaign);
             await _context.SaveChangesAsync();
             _logger.Log(LogLevel.Information, "Campaign Delete: ", campaign);
@@ -56,7 +62,7 @@ namespace Ads.Api.Services
 
         public async Task Edit(Campaign campaign)
         {
-            var foundedCampaign = await _context.Campaigns.FindAsync(campaign.Id);
+            var foundedCampaign = await _context.Campaigns.FindAsync(campaign.CampaignId);
 
             if (foundedCampaign == null) throw new Exception("Campaign Not Found");
 

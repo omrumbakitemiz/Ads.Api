@@ -15,7 +15,7 @@ namespace Ads.Api.Controllers
             _companyService = companyService;
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -38,7 +38,7 @@ namespace Ads.Api.Controllers
             return Ok(company);
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

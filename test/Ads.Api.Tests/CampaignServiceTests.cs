@@ -40,7 +40,7 @@ namespace Ads.Api.Tests
             await campaignService.Add(campaign);
 
             // assert
-            var addedCampaign = campaignService.Get(campaign.Id);
+            var addedCampaign = campaignService.Get(campaign.CampaignId);
             Assert.NotNull(campaign);
             Assert.NotNull(addedCampaign);
         }
@@ -86,7 +86,7 @@ namespace Ads.Api.Tests
                 Location = new Point(100, 100, 200)
             };
             await campaignService.Add(campaign);
-            await campaignService.Delete(campaign.Id);
+            await campaignService.Delete(campaign.CampaignId);
             
             var allCampaings = await campaignService.All();
             
@@ -128,7 +128,7 @@ namespace Ads.Api.Tests
 
             await campaignService.Edit(updatedCampaign);
 
-            var editedCampaign = await campaignService.Get(updatedCampaign.Id);
+            var editedCampaign = await campaignService.Get(updatedCampaign.CampaignId);
 
             // assert
             Assert.Equal(updatedCampaign.Description, editedCampaign.Description);

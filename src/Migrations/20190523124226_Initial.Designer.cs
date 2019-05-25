@@ -12,7 +12,7 @@ using NetTopologySuite.Geometries;
 namespace Ads.Api.Migrations
 {
     [DbContext(typeof(AdsDbContext))]
-    [Migration("20190521185638_Initial")]
+    [Migration("20190523124226_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,7 +88,7 @@ namespace Ads.Api.Migrations
 
             modelBuilder.Entity("Ads.Api.Models.Campaign", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("CampaignId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Category")
@@ -107,7 +107,7 @@ namespace Ads.Api.Migrations
 
                     b.Property<DateTime>("StartDate");
 
-                    b.HasKey("Id");
+                    b.HasKey("CampaignId");
 
                     b.HasIndex("CompanyId");
 
@@ -116,7 +116,7 @@ namespace Ads.Api.Migrations
 
             modelBuilder.Entity("Ads.Api.Models.Company", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("CompanyId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -126,7 +126,7 @@ namespace Ads.Api.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("CompanyId");
 
                     b.ToTable("Compaines");
                 });

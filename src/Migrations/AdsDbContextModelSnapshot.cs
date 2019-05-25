@@ -86,7 +86,7 @@ namespace Ads.Api.Migrations
 
             modelBuilder.Entity("Ads.Api.Models.Campaign", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("CampaignId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Category")
@@ -105,7 +105,7 @@ namespace Ads.Api.Migrations
 
                     b.Property<DateTime>("StartDate");
 
-                    b.HasKey("Id");
+                    b.HasKey("CampaignId");
 
                     b.HasIndex("CompanyId");
 
@@ -114,7 +114,7 @@ namespace Ads.Api.Migrations
 
             modelBuilder.Entity("Ads.Api.Models.Company", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("CompanyId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -124,7 +124,7 @@ namespace Ads.Api.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("CompanyId");
 
                     b.ToTable("Compaines");
                 });

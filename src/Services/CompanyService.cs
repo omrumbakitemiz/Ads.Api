@@ -34,15 +34,18 @@ namespace Ads.Api.Services
 
         public async Task<Company> Get(string id)
         {
-            var company = await _context.Companies.FindAsync(id);
-            _logger.Log(LogLevel.Information, "Company Get: ", company);
+            var foundedCompany = await _context.Companies
+                .Include(company => company.Campaigns)
+                .SingleOrDefaultAsync(item => item.CompanyId == id);
+            
+            _logger.Log(LogLevel.Information, "Company Get: ", foundedCompany);
 
-            return company;
+            return foundedCompany;
         }
 
         public async Task Edit(Company company)
         {
-            var foundedCompany = await _context.Companies.FindAsync(company.Id);
+            var foundedCompany = await _context.Companies.FindAsync(company.CompanyId);
 
             if (foundedCompany == null) throw new Exception("Company Not Found");
 
@@ -65,7 +68,10 @@ namespace Ads.Api.Services
 
         public async Task<List<Company>> All()
         {
-            var companies = await _context.Companies.ToListAsync();
+            var companies = await _context.Companies
+                .Include(company => company.Campaigns)
+                .ToListAsync();
+
             _logger.Log(LogLevel.Information, "Company All: ", companies);
 
             return companies;

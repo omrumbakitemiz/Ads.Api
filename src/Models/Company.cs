@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using NetTopologySuite.Geometries;
@@ -8,7 +8,14 @@ namespace Ads.Api.Models
     [Table("Compaines")]
     public class Company
     {
-        public string Id { get; set; }
+        public Company()
+        {
+            Campaigns = new List<Campaign>();
+        }
+        
+        public List<Campaign> Campaigns { get; set; }
+        
+        public string CompanyId { get; set; }
         
         [Required]
         public string Name { get; set; }
@@ -17,17 +24,11 @@ namespace Ads.Api.Models
 
         public Point Location { get; set; }
 
+
         [NotMapped]
         public double X { get; set; }
 
         [NotMapped]
         public double Y { get; set; }
-        
-        public Collection<Campaign> Campaigns { get; set; }
-
-        public Company()
-        {
-            Campaigns = new Collection<Campaign>();
-        }
     }
 }
