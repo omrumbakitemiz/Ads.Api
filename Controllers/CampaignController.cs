@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Ads.Api.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    [ApiController]
     public class CampaignController : ControllerBase
     {
         private readonly ICampaignService _campaignService;
