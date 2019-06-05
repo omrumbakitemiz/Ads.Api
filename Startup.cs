@@ -13,29 +13,26 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Ads.Api.Interfaces;
 using Ads.Api.Services;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Hosting;
-using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Identity;
 using Swashbuckle.AspNetCore.Swagger;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Ads.Api
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-
             var connectionString = Configuration.GetConnectionString("LocalDockerDatabase");
-            
+
             services.AddDbContext<AdsDbContext>(options =>
                 options.UseSqlServer(connectionString, x => x.UseNetTopologySuite()));
 
@@ -47,7 +44,7 @@ namespace Ads.Api
                         .SetIsOriginAllowed(host => true)
                 )
             );
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -115,7 +112,7 @@ namespace Ads.Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICampaignService, CampaignService>();
             services.AddScoped<ICompanyService, CompanyService>();
-            
+
             services.AddHealthChecks();
         }
 
@@ -136,10 +133,10 @@ namespace Ads.Api
             app.UseAuthentication();
             app.UseCors("default");
             app.UseHealthChecks("/health");
-            
+
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "News API V1"); });
-            
+
             app.UseMvc();
         }
     }

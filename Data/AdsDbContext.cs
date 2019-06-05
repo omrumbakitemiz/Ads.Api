@@ -24,10 +24,6 @@ namespace Ads.Api.Data
             modelBuilder.Entity<UserCampaign>()
                 .HasKey(userCampaign => new {userCampaign.UserId, userCampaign.CampaignId});
 
-//            modelBuilder.Entity<Campaign>()
-//                .HasOne(campaign => campaign.Company)
-//                .WithMany(company => company.Campaigns);
-
             modelBuilder.Entity<Campaign>().Property(c => c.Category).HasConversion<string>();
         }
     }
