@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using NetTopologySuite.Geometries;
 
 namespace Ads.Api.Models
 {
@@ -22,8 +21,7 @@ namespace Ads.Api.Models
 
         public string Address { get; set; }
 
-        public Point Location { get; set; }
-
+//        public Point Location { get; set; }
 
         [NotMapped]
         public double X { get; set; }

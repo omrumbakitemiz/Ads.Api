@@ -1,22 +1,20 @@
-﻿using Ads.Api.Data;
+﻿using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Ads.Api.Data;
 using Ads.Api.Interfaces;
 using Ads.Api.Services;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Identity;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Ads.Api
 {
@@ -45,40 +43,25 @@ namespace Ads.Api
                 )
             );
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info
+            services.AddControllers()
+                .AddNewtonsoftJson(jsonOptions =>
                 {
-                    Version = "v1",
-                    Title = "News Api",
-                    Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = "None",
-                    Contact = new Contact
-                    {
-                        Name = "Ömrüm Baki Temiz",
-                        Email = "omrumbakitemiz@icloud.com",
-                        Url = "https://github.com/omrumbakitemiz"
-                    },
-                    License = new License
-                    {
-                        Name = "MIT",
-                        Url = "https://github.com/omrumbakitemiz/News-Api"
-                    }
+                    jsonOptions.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    jsonOptions.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+                    jsonOptions.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    jsonOptions.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
-            });
 
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddJwtBearer(config =>
+                .AddJwtBearer(jwtBearerOptions =>
                 {
-                    config.RequireHttpsMetadata = false;
-                    config.SaveToken = true;
-                    config.TokenValidationParameters = new TokenValidationParameters
+                    jwtBearerOptions.RequireHttpsMetadata = false;
+                    jwtBearerOptions.SaveToken = true;
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidIssuer = Configuration["JwtIssuer"],
                         ValidAudience = Configuration["JwtIssuer"],
@@ -87,9 +70,9 @@ namespace Ads.Api
                     };
                 });
 
-            services
-                .AddDefaultIdentity<User>()
-                .AddEntityFrameworkStores<AdsDbContext>();
+//            services
+//                .AddDefaultIdentity<User>()
+//                .AddEntityFrameworkStores<AdsDbContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -100,44 +83,56 @@ namespace Ads.Api
                 options.Password.RequireUppercase = false;
             });
 
-            services.AddMvc()
-                .AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                    options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddScoped<IUserService, UserService>();
+//            services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICampaignService, CampaignService>();
             services.AddScoped<ICompanyService, CompanyService>();
 
             services.AddHealthChecks();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "News Api",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://github.com/omrumbakitemiz/Ads.Api/blob/master/README.md"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Ömrüm Baki Temiz",
+                        Email = "omrumbakitemiz@icloud.com",
+                        Url = new Uri("https://github.com/omrumbakitemiz")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT",
+                        Url = new Uri("https://github.com/omrumbakitemiz/Ads.Api/blob/master/LICENSE")
+                    }
+                });
+            });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddFile("Logs/ads.api-{Date}.txt");
+            app.UseSwagger();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
+            app.UseRouting();
+
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseAuthentication();
-            app.UseCors("default");
-            app.UseHealthChecks("/health");
+            app.UseAuthorization();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "News API V1"); });
-
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
+            });
         }
     }
 }
