@@ -6,7 +6,7 @@ using Ads.Api.Interfaces;
 using Ads.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using NetTopologySuite.Geometries;
+//using NetTopologySuite.Geometries;
 
 namespace Ads.Api.Services
 {
@@ -23,10 +23,10 @@ namespace Ads.Api.Services
 
         public async Task Add(Company company)
         {
-            company.Location = new Point(company.X, company.Y)
-            {
-                SRID = 4326
-            };
+//            company.Location = new Point(company.X, company.Y)
+//            {
+//                SRID = 4326
+//            };
             _context.Companies.Add(company);
             await _context.SaveChangesAsync();
             _logger.Log(LogLevel.Information, "Company Add: ", company);

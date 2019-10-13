@@ -1,5 +1,4 @@
 ﻿using Ads.Api.Data;
-using GeoAPI.Geometries;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,7 +24,7 @@ namespace Ads.Api.Models
 
         public DateTime EndDate { get; set; }
 
-        public IPoint Location { get; set; }
+//        public IPoint Location { get; set; }
         
         public Category Category { get; set; }
         
